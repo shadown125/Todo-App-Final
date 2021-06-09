@@ -5,7 +5,7 @@ security:
         App\Entity\TodoUser:
             algorithm: auto
     # https://symfony.com/doc/current/security/experimental_authenticators.html
-    enable_authenticator_manager: true
+#    enable_authenticator_manager: true
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         users_in_memory: { memory: null }
@@ -30,8 +30,7 @@ security:
             form_login:
                 check_path: login
                 login_path: login
-                enable_csrf: true
-                always_use_default_target_path: true
+                csrf_token_generator: security.csrf.token_manager
                 default_target_path: susanoo_dashboard
                 username_parameter: _email
             logout:
@@ -44,7 +43,7 @@ security:
             form_login:
                 check_path: todo_login
                 login_path: todo_login
-                always_use_default_target_path: true
+                csrf_token_generator: security.csrf.token_manager
                 default_target_path: todo
                 username_parameter: _email
             logout:
