@@ -9,8 +9,8 @@
                     <div class="progression-to-lvl-up" data-progression-to-lvl-up></div>
                 </div>
                 <div class="information">
-                    <span class="gained" data-gained-exp><?php echo $_SESSION['user_exp']; ?></span> /
-                    <span class="to-lvl-up" data-exp-to-lvl-up><?php echo $_SESSION['user_lvl_up']; ?></span>
+                    <span class="gained" data-gained-exp>{{ app.user.exp }}</span> /
+                    <span class="to-lvl-up" data-exp-to-lvl-up>{{ app.user.levelUp }}</span>
                 </div>
             </div>
             <div class="options">

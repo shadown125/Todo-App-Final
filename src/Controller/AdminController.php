@@ -10,7 +10,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-#[Route('/susanoo')]
+#[Route('/admin/susanoo')]
 
 class AdminController extends AbstractController
 {

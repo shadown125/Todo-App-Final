@@ -4,12 +4,14 @@
             <li>
                 <div class="profile-container">
                     <div class="left-side-wrapper">
-                        <img src="src/pics/<?php echo $_SESSION['user_profile_image']; ?>" alt="profile image">
-                        <div class="current-level"><?php echo $_SESSION['user_level']; ?></div>
+                        <img src="/Todo-App/public/src/pics/{{ app.user.profileImage }}" alt="profile image">
+                        <div class="current-level">{{ app.user.level }}</div>
                     </div>
                     <div class="profile-information">
                         {{ app.user.name }}
-                        {{ app.user.profession }}
+                        {% if(app.user.lastname) %}
+                            <div>{{ app.user.lastname }}</div>
+                        {% endif %}
                     </div>
                 </div>
             </li>

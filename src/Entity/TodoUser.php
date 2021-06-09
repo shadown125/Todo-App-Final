@@ -78,6 +78,11 @@ class TodoUser implements UserInterface
      */
     private $level_up;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $profile_image;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -239,6 +244,18 @@ class TodoUser implements UserInterface
     public function setLevelUp(int $level_up): self
     {
         $this->level_up = $level_up;
+
+        return $this;
+    }
+
+    public function getProfileImage(): ?string
+    {
+        return $this->profile_image;
+    }
+
+    public function setProfileImage(string $profile_image): self
+    {
+        $this->profile_image = $profile_image;
 
         return $this;
     }

@@ -17,30 +17,34 @@ security:
             entity:
                 class: App\Entity\TodoUser
                 property: email
+    role_hierarchy:
+        ROLE_ADMIN: [ ROLE_ADMIN, ROLE_USER, ROLE_USER_TODO ]
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         secured_area:
-            pattern: ^/
+            pattern: ^/admin/*
             lazy: true
             provider: app_user_provider
             form_login:
                 check_path: login
                 login_path: login
                 enable_csrf: true
+                always_use_default_target_path: true
                 default_target_path: susanoo_dashboard
                 username_parameter: _email
             logout:
                 path: logout
                 target: login
         todo:
-            pattern: ^/
+            pattern: ^/app/*
+            lazy: true
             provider: app_todo_user_provider
             form_login:
                 check_path: todo_login
                 login_path: todo_login
-                enable_csrf: true
+                always_use_default_target_path: true
                 default_target_path: todo
                 username_parameter: _email
             logout:
@@ -56,5 +60,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/susanoo, roles: [ ROLE_ADMIN, ROLE_USER ] }
-        - { path: ^/todo, roles: [ ROLE_USER_TODO ] }
+        - { path: ^/admin/susanoo/, roles: [ ROLE_ADMIN ] }
+        - { path: ^/app/todo, roles: [ ROLE_USER, ROLE_USER_TODO] }
