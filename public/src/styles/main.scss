@@ -1,0 +1,39 @@
+@import "../../node_modules/foundation-sites/scss/foundation";
+@import "settings";
+// GLOBAL STYLES
+@include foundation-global-styles;
+
+@import "abstract/fonts";
+@import "abstract/function";
+
+// MIXINS
+@import "mixins/backdrop-filter";
+@import "mixins/button";
+@import "mixins/icon";
+@import "mixins/inputs";
+@import "mixins/reset-list";
+@import "mixins/scrollbar";
+@import "mixins/search-input";
+
+// ELEMENTS
+@import "elements/background-blur";
+@import "elements/base";
+@import "elements/headlines";
+@import "elements/icons";
+@import "elements/link";
+@import "elements/settings-popup";
+@import "elements/todo-popup";
+
+//COMPONENTS
+@import "components/grid";
+@import "components/login";
+@import "components/main-navigation";
+@import "components/page-body";
+@import "components/page-header";
+@import "components/progression";
+@import "components/register";
+@import "components/search-form";
+@import "components/todos";
+@import "components/wrapper";
+
+// TEMPLATES

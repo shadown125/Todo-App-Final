@@ -1,0 +1,33 @@
+<aside class="aside-navigation">
+    <nav class="main-navigation">
+        <ul>
+            <li>
+                <div class="profile-container">
+                    <div class="left-side-wrapper">
+                        <img src="src/pics/<?php echo $_SESSION['user_profile_image']; ?>" alt="profile image">
+                        <div class="current-level"><?php echo $_SESSION['user_level']; ?></div>
+                    </div>
+                    <div class="profile-information">
+                        {{ app.user.name }}
+                        {{ app.user.profession }}
+                    </div>
+                </div>
+            </li>
+            <li class="today">
+                <a href="#">Today</a>
+            </li>
+            <li class="done-todos">
+                <a href="#">Done Todos</a>
+            </li>
+            <li>
+                <button class="button" data-settings-button>Settings</button>
+            </li>
+            <li>
+                <a href="{{ path('todo_logout') }}" class="logout">Logout</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="copyright">
+        <p>&copy; Copyright {{ 'now' | date('Y') }} by Dawid Oleksiuk. All rights reserved.</p>
+    </div>
+</aside>

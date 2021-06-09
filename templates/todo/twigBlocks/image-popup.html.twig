@@ -1,0 +1,11 @@
+<div class="image-container" data-image-container>
+    {{ include('todo/twigBlocks/profile-popup.html.twig') }}
+    <form action="#" method="post" class="form" enctype="multipart/form-data">
+        <div>
+            <label for="profile-image">Change profile image:</label>
+            <input type="file" class="input-option" name="profile-image" id="profile-image">
+        </div>
+        <button type="submit" class="submit">Apply</button>
+    </form>
+    {{ include('todo/twigBlocks/button-back-popup.html.twig') }}
+</div>

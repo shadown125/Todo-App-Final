@@ -1,0 +1,37 @@
+<div class="settings" data-settings>
+    <div class="content">
+        <button class="button settings-button" data-settings-button-back></button>
+        <div class="overview-settings" data-overview-settings>
+            {{ include('todo/twigBlocks/profile-popup.html.twig') }}
+            <h3 class="headline h3">Your Level</h3>
+            <div class="level">
+                <div class="bar">
+                    <div class="progression-to-lvl-up" data-progression-to-lvl-up></div>
+                </div>
+                <div class="information">
+                    <span class="gained" data-gained-exp><?php echo $_SESSION['user_exp']; ?></span> /
+                    <span class="to-lvl-up" data-exp-to-lvl-up><?php echo $_SESSION['user_lvl_up']; ?></span>
+                </div>
+            </div>
+            <div class="options">
+                <button data-name>Change Name</button>
+            </div>
+            <div class="options">
+                <button data-password>Change password</button>
+            </div>
+            <div class="options">
+                <button data-image>Change Image</button>
+            </div>
+            <div class="options delete">
+                <button data-delete>Delete account</button>
+            </div>
+            <div class="options">
+                <a href="{{ path('todo_logout') }}">Logout</a>
+            </div>
+        </div>
+        {{ include('todo/twigBlocks/name-popup.html.twig') }}
+        {{ include('todo/twigBlocks/password-popup.html.twig') }}
+        {{ include('todo/twigBlocks/image-popup.html.twig') }}
+        <?php require_once("templates/includes/delete-popup.php"); ?>
+    </div>
+</div>

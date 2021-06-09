@@ -1,0 +1,37 @@
+{% extends 'todo/base.html.twig' %}
+
+{% block main %}
+    <div class="content-container">
+        {{ include('todo/twigBlocks/progression.html.twig') }}
+        <section class="todos">
+            <div class="todos-header">
+                <h3 class="h3 headline">In progression</h3>
+                <a href="./#todo-popup" class="button add-todo"></a>
+                <div class="description">Today</div>
+            </div>
+            <div class="todos-wrapper">
+                <ul>
+                    <li>
+                        <div class="header">
+                            <div class="circle"></div>
+                            <h3 class="h3 headline">Title</h3>
+                            <form action="./?action=doneTodo" method="post">
+                                <input type="hidden" name="id" value="">
+                                <button class="button-complete"></button>
+                            </form>
+                            <form action="./?action=getEditTodo" method="post">
+                                <input type="hidden" name="id" value="">
+                                <button class="button-edit"></button>
+                            </form>
+                            <form action="./?action=delete" method="post">
+                                <input type="hidden" name="id" value="">
+                                <button class="button-delete"></button>
+                            </form>
+                        </div>
+                        <div class="description">Description</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no">
+
+    <meta property="og:title" content="Susanoo" >
+    <meta property="og:type" content="website" >
+    <meta property="og:description" content="You entried to the Susanoo" >
+    <meta property="og:locale" content="pl_PL" >
+    <meta property="og:locale:alternate" content="en_GB" >
+
+    <title>{% block title %}Susanoo{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% if(asset('build/main.css') is same as "/susanoo/public/build/main.css") %}{{ asset('build/main.css') }}{% else %}{{ asset('build/susanoo/main.css') }}{% endif %}">
+
+    <script src="{% if(asset('build/runtime.js') is same as "/susanoo/public/build/runtime.js") %}{{ asset('build/runtime.js') }}{% else %}{{ asset('build/susanoo/runtime.js') }}{% endif %}" defer></script>
+    <script src="{% if(asset('build/vendor.js') is same as "/susanoo/public/build/vendor.js") %}{{ asset('build/vendor.js') }}{% else %}{{ asset('build/susanoo/vendor.js') }}{% endif %}" defer></script>
+    <script src="{% if(asset('build/main.js') is same as "/susanoo/public/build/main.js") %}{{ asset('build/main.js') }}{% else %}{{ asset('build/susanoo/main.js') }}{% endif %}" defer></script>
+</head>
+<body>
+    {% block header %}
+        <header class="page-header">
+            <div class="wrapper-sus">
+                <nav class="navigation" data-head-navigation>
+                    <button class="button-menu button-navigation" data-main-navigation-button></button>
+                    <div class="left-side">
+                        <h1 class="h1 headline">Susanoo</h1>
+                        <form class="search-form">
+                            <label for="search"></label>
+                            <input type="search" class="input" id="search" placeholder="Type for Search">
+                            <button class="button-header"></button>
+                        </form>
+                    </div>
+                    <div class="options">
+                        <button class="button-rectangle" data-head-navigation-button></button>
+                        <ul>
+                            <li>
+                                <button class="button-header notification"></button>
+                                <span>notifications</span>
+                            </li>
+                            <li>
+                                <button class="button-header language"></button>
+                                <span>language</span>
+                            </li>
+                            <li>
+                                <button class="button-header statistic"></button>
+                                <span>user activity</span>
+                            </li>
+                            <li>
+                                <div class="profile">
+                                    <div>
+                                        <img src="{{ asset('src/pics/img-2.jpg') }}" alt="Profile image">
+                                    </div>
+                                    <div class="informations">
+                                        <div class="name">{{ app.user.name }} {{ app.user.lastname }}</div>
+                                        <div class="profession">{{ app.user.profession }}</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <button class="button-menu" data-button-menu></button>
+                                <span>settings</span>
+                                <div class="dropdown-menu" data-dropdown-menu>
+                                    <a href="#">Settings</a>
+                                    <a href="{{ path('susanoo_register') }}">Register User</a>
+                                    <a href="{{ path('logout') }}">Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+    {% endblock %}
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+    {% block footer %}{% endblock %}
+</body>

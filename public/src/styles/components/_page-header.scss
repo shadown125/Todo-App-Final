@@ -1,0 +1,93 @@
+.page-header {
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        background: {
+            color: $header-background-color;
+        }
+        position: relative;
+        padding: {
+            top: rem-calc(20);
+            bottom: rem-calc(20);
+        }
+        @include breakpoint(large) {
+            border-top-right-radius: rem-calc(15);
+            border-top-left-radius: rem-calc(15);
+            flex: {
+                wrap: nowrap;
+            }
+        }
+        .headline {
+            position: relative;
+            padding: {
+                left: rem-calc(42);
+            }
+            color: $header-title-color;
+            &::before {
+                @include icon($icon-qq);
+                color: $header-icon-qq-color;
+                position: absolute;
+                top: rem-calc(10);
+                left: 0;
+            }
+            @include breakpoint(large) {
+                white-space: nowrap;
+                margin: {
+                    right: rem-calc(16);
+                    left: rem-calc(32);
+                }
+            }
+        }
+        .button {
+            &::before {
+                @include icon(null, true);
+                color: $header-icon-color;
+            }
+        }
+        .button-menu {
+            @include default-button-states();
+            position: absolute;
+            top: rem-calc(30);
+            left: rem-calc(14);
+            &:hover {
+                cursor: pointer;
+            }
+            &::before {
+                @include icon($icon-menu, false);
+                font: {
+                    size: rem-calc(30);
+                }
+            }
+            @include breakpoint(large) {
+                display: none;
+            }
+        }
+        .button-settings {
+            @include default-button-states();
+            cursor: pointer;
+            @include breakpoint(large) {
+                display: inline-block;
+                width: rem-calc(45);
+                height: rem-calc(45);
+                margin: {
+                    right: rem-calc(32);
+                    left: rem-calc(32);
+                }
+                background: {
+                    color: $header-settings-background-color;
+                }
+                border: {
+                    radius: rem-calc(200);
+                }
+                transition: background-color 0.2s linear;
+                &:hover {
+                    background: {
+                        color: $header-settings-hover-background-color;
+                    }
+                }
+            }
+        }
+    }
+}

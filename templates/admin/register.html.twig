@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <div class="wrapper-sus-main">
+        <div class="main-navigation-container" data-main-navigation-container>
+            {{ include('admin/twigBlocks/main-navigation.html.twig') }}
+        </div>
+        <div class="content">
+            <section class="section register">
+                <div class="box-big">
+                    {{ form_start(form, {'attr': {'novalidate':'novalidate', 'class':'form'}}) }}
+                        <div>
+                            <label for="user_name">Name:</label>
+                            {% if form.name.vars.errors|length %}
+                                {{ form_widget(form.name, { 'attr': {'class': 'input is-invalid'} }) }}
+                            {% else %}
+                                {{ form_widget(form.name, { 'attr': {'class': 'input'} }) }}
+                            {% endif %}
+                            <div>
+                                {{ form_errors(form.name) }}
+                            </div>
+                        </div>
+                        <div>
+                            <label for="user_last_name">Last name:</label>
+                            {{ form_widget(form.last_name, { 'attr': {'class': 'input'} }) }}
+                            <div>
+                                {{ form_errors(form.last_name) }}
+                            </div>
+                        </div>
+                        <div>
+                            <label for="user_email">E-mail:</label>
+                            {% if form.email.vars.errors|length %}
+                                {{ form_widget(form.email, { 'attr': {'class': 'input is-invalid'} }) }}
+                            {% else %}
+                                {{ form_widget(form.email, { 'attr': {'class': 'input'} }) }}
+                            {% endif %}
+                            <div>
+                                {{ form_errors(form.email) }}
+                            </div>
+                        </div>
+                        <div>
+                            <label for="user_profession">Profession:</label>
+                            {{ form_widget(form.profession, { 'attr': {'class': 'input'} }) }}
+                            <div>
+                                {{ form_errors(form.profession) }}
+                            </div>
+                        </div>
+                        <div>
+                            <label for="user_password_first">Password:</label>
+                            {% if form.password.first.vars.errors|length %}
+                                {{ form_widget(form.password.first, { 'attr': {'class': 'input is-invalid'} }) }}
+                            {% else %}
+                                {{ form_widget(form.password.first, { 'attr': {'class': 'input'} }) }}
+                            {% endif %}
+                            <div>
+                                {{ form_errors(form.password.first) }}
+                            </div>
+                        </div>
+                        <div>
+                            <label for="user_password_second">Confirm password:</label>
+                            {{ form_widget(form.password.second, { 'attr': {'class': 'input'} }) }}
+                            <div>
+                                {{ form_errors(form.password.second) }}
+                            </div>
+                        </div>
+                        <div class="container-submit">
+                            <button type="submit" class="button">Create User</button>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <footer class="page-footer">
+
+    </footer>
+{% endblock %}

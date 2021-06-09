@@ -1,0 +1,218 @@
+.settings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(black, 0.8);
+    z-index: 3;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    &.is-active {
+        opacity: 1;
+        visibility: visible;
+        .content {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    @include backdrop-filter();
+    .content {
+        padding: rem-calc(32);
+        width: 85%;
+        max: {
+            width: rem-calc(900);
+        }
+        background-color: $todo-popup-background-color;
+        box-shadow: 0 rem-calc(32) rem-calc(64) rgba(black, 0.2);
+        border-radius: 15px;
+        overflow: hidden;
+        opacity: 0;
+        transform: scale(0.25);
+        transition: all 0.5s 0.2s;
+        .overview-settings {
+            &.is-hide {
+                display: none;
+            }
+        }
+        .profile-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: rem-calc(80);
+                height: rem-calc(80);
+                border: {
+                    radius: 50%;
+                }
+                margin: {
+                    right: rem-calc(16);
+                }
+            }
+            .profile-information {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                div {
+                    color: $settings-profile-information-color;
+                    &:last-child {
+                        margin: {
+                            top: rem-calc(6);
+                        }
+                    }
+                }
+            }
+        }
+        .headline {
+            text: {
+                align: center;
+            }
+            color: $settings-headline-color;
+            margin: {
+                top: rem-calc(16);
+            }
+        }
+        .level {
+            position: relative;
+            .bar {
+                height: rem-calc(14);
+                width: 100%;
+                background: {
+                    color: $settings-level-bar-background-color;
+                }
+                margin: rem-calc(16) 0;
+                border: {
+                    radius: rem-calc(15);
+                }
+                .progression-to-lvl-up {
+                    height: 100%;
+                    background: {
+                        image: linear-gradient(45deg, $settings-level-progression-bar-color-1, $settings-level-progression-bar-color-2);
+                    }
+                    border: {
+                        radius: rem-calc(15);
+                    }
+                    animation: progressAnimation 2s ease-in-out;
+                    @keyframes progressAnimation {
+                        from {
+                            width: 0;
+                        }
+                    }
+                }
+            }
+            .information {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font: {
+                    weight: bold;
+                }
+            }
+        }
+        .options {
+            &.delete button {
+                &:hover {
+                    background: {
+                        color: $settings-option-delete-button-background-color;
+                    }
+                }
+            }
+            text: {
+                align: center;
+            }
+            width: 100%;
+            button {
+                @include default-button-states();
+                display: block;
+                color: white;
+                cursor: pointer;
+                width: 100%;
+                padding: rem-calc(24) 0;
+                transition: background-color 0.2s linear;
+                border: {
+                    radius: rem-calc(15);
+                }
+                &:hover {
+                    background: {
+                        color: #777;
+                    }
+                }
+            }
+        }
+        .button {
+            @include default-button-states();
+            display: flex;
+            justify-content: flex-end;
+            width: 0;
+            margin: {
+                left: auto;
+            }
+            color: white;
+            cursor: pointer;
+            transition: color 0.2s linear;
+            &:hover {
+                color: $link-hover-color;
+            }
+            &::before {
+                @include icon($icon-cancel-circle);
+                font: {
+                    size: rem-calc(26);
+                }
+            }
+        }
+        .name-container,
+        .password-container,
+        .image-container,
+        .delete-container {
+            display: none;
+            position: relative;
+            &.is-active {
+                display: block;
+            }
+            .button-back {
+                @include default-button-states();
+                @include custom-big-button();
+            }
+            .form {
+                margin: rem-calc(16) 0;
+                div {
+                    display: flex;
+                    flex: {
+                        direction: column;
+                    }
+                    margin: {
+                        bottom: rem-calc(10);
+                    }
+                }
+            }
+            label {
+                color: white;
+                padding: {
+                    left: rem-calc(10);
+                }
+                margin: {
+                    bottom: rem-calc(6);
+                }
+            }
+            .submit {
+                @include default-button-states();
+                @include custom-big-button($background-color: #009FFD);
+                position: absolute;
+                bottom: 0;
+                right: 0;
+            }
+        }
+        .delete-container {
+            .headline {
+                margin: {
+                    bottom: rem-calc(12);
+                }
+            }
+        }
+    }
+}

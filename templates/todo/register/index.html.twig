@@ -1,0 +1,43 @@
+{% extends 'todo/register/base.html.twig' %}
+
+{% block main %}
+
+<h2 class="title h2">Register</h2>
+<form action="./?action=register" method="post" class="form">
+    <div class="name-wrapper">
+        <div>
+            <label for="first-name" class="first-name">First name: <sup>*</sup></label>
+            <input type="text" id="first-name" class="first-name"
+                   value="" name="first_name" placeholder="Your first name" required>
+            <span class="invalid-feedback"></span>
+        </div>
+        <div>
+            <label for="last-name" class="last-name">Last name:</label>
+            <input type="text" id="last-name" class="last-name" value="" name="last_name" placeholder="Your last name">
+        </div>
+    </div>
+    <div>
+        <label for="email" class="email">E-Mail: <sup>*</sup></label>
+        <input type="email" id="email" class="email"
+               value="" name="email" placeholder="Your E-Mail" required>
+        <span class="invalid-feedback"></span>
+    </div>
+    <div>
+        <label for="password" class="password">Password: <sup>*</sup></label>
+        <input type="password" id="password" class="password"
+               value="" name="password" placeholder="Your password" required>
+        <span class="invalid-feedback"></span>
+    </div>
+    <div>
+        <label for="confirm-password" class="confirm-password">Confirm password: <sup>*</sup></label>
+        <input type="password" id="confirm-password" class="confirm-password"
+               value="" name="confirm_password" placeholder="Confirm your password" required>
+        <span class="invalid-feedback"></span>
+    </div>
+    <div class="submitting-container">
+        <a href="{{ path('todo_login') }}" class="button-back">Back</a>
+        <button class="register-button" type="submit">Register</button>
+    </div>
+</form>
+
+{% endblock %}
