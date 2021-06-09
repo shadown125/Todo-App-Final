@@ -2,15 +2,15 @@
 
 {% block main %}
 
-<h2 class="title h2">Register</h2>
-{{ form_start(form, {'attr': {'novalidate':'novalidate', 'class':'form'}}) }}
+    <h2 class="title h2">Register</h2>
+    {{ form_start(form, {'attr': {'novalidate':'novalidate', 'class':'form'}}) }}
     <div class="name-wrapper">
         <div>
             <label for="todo_user_name" class="first-name">First name: <sup>*</sup></label>
             {% if form.name.vars.errors|length %}
                 {{ form_widget(form.name, { 'attr': {'class': 'first-name is-invalid', 'placeholder': 'Your first name'} }) }}
             {% else %}
-                {{ form_widget(form.name, { 'attr': {'class': 'input'} }) }}
+                {{ form_widget(form.name, { 'attr': {'class': 'input', 'placeholder': 'Your first name'} }) }}
             {% endif %}
             <span>
                 {{ form_errors(form.name) }}
@@ -29,7 +29,7 @@
         {% if form.email.vars.errors|length %}
             {{ form_widget(form.email, { 'attr': {'class': 'email is-invalid', 'placeholder': 'Your E-Mail'} }) }}
         {% else %}
-            {{ form_widget(form.email, { 'attr': {'class': 'email'} }) }}
+            {{ form_widget(form.email, { 'attr': {'class': 'email', 'placeholder': 'Your E-Mail'} }) }}
         {% endif %}
         <div>
             {{ form_errors(form.email) }}
@@ -40,7 +40,7 @@
         {% if form.password.first.vars.errors|length %}
             {{ form_widget(form.password.first, { 'attr': {'class': 'password is-invalid', 'placeholder': 'Your password'} }) }}
         {% else %}
-            {{ form_widget(form.password.first, { 'attr': {'class': 'password'} }) }}
+            {{ form_widget(form.password.first, { 'attr': {'class': 'password', 'placeholder': 'Your password'} }) }}
         {% endif %}
         <div>
             {{ form_errors(form.password.first) }}
@@ -57,6 +57,6 @@
         <a href="{{ path('todo_login') }}" class="button-back">Back</a>
         <button class="register-button" type="submit">Register</button>
     </div>
-{{ form_end(form) }}
+    {{ form_end(form) }}
 
 {% endblock %}
