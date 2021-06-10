@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\TodoList;
 use App\Entity\TodoUser;
 use App\Form\TodoUserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +20,13 @@ class TodoController extends AbstractController
     #[Route('/todo', name: 'todo')]
     public function index(): Response
     {
-        return $this->render('todo/index.html.twig');
+        $userId = $this->get('security.token_storage')->getToken()->getUser()->getId();
+
+        $todos = $this->getDoctrine()->getRepository(TodoList::class)->findBy(['user_id' => $userId]);
+
+        return $this->render('todo/index.html.twig', [
+            'todos' => $todos
+        ]);
     }
 
     #[Route('/login', name: 'todo_login')]

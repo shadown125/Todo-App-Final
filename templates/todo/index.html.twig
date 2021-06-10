@@ -11,10 +11,11 @@
             </div>
             <div class="todos-wrapper">
                 <ul>
+                    {% for todo in todos %}
                     <li>
                         <div class="header">
                             <div class="circle"></div>
-                            <h3 class="h3 headline">Title</h3>
+                            <h3 class="h3 headline">{{ todo.title }}</h3>
                             <form action="./?action=doneTodo" method="post">
                                 <input type="hidden" name="id" value="">
                                 <button class="button-complete"></button>
@@ -28,8 +29,9 @@
                                 <button class="button-delete"></button>
                             </form>
                         </div>
-                        <div class="description">Description</div>
+                        <div class="description">{{ todo.description }}</div>
                     </li>
+                    {% endfor %}
                 </ul>
             </div>
         </section>
