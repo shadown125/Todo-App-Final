@@ -24,10 +24,7 @@
                                 <input type="hidden" name="id" value="">
                                 <button class="button-edit"></button>
                             </form>
-                            <form action="./?action=delete" method="post">
-                                <input type="hidden" name="id" value="">
-                                <button class="button-delete"></button>
-                            </form>
+                            <a href="{{ path('delete_todo', {'todo': todo.id}) }}" class="button-delete"></a>
                         </div>
                         <div class="description">{{ todo.description }}</div>
                     </li>

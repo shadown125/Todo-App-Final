@@ -87,4 +87,14 @@ class TodoController extends AbstractController
         $this->get('security.token_storage')->setToken($token);
         $this->get('session')->set('_security_main', serialize($token));
     }
+
+    #[Route('/delete-todo/{todo}', name: 'delete_todo')]
+    public function deleteTodo(TodoList $todo)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($todo);
+        $em->flush();
+
+        return $this->redirectToRoute('todo');
+    }
 }

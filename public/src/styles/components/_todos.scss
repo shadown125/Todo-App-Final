@@ -116,7 +116,8 @@
                             }
                         }
                     }
-                    button {
+                    button,
+                    a {
                         position: relative;
                         display: block;
                         @include default-button-states();
@@ -130,6 +131,11 @@
                         }
                         &:hover {
                             cursor: pointer;
+                        }
+                    }
+                    a {
+                        padding: {
+                            left: rem-calc(3);
                         }
                     }
                     .button-complete {
@@ -165,7 +171,7 @@
                         }
                         padding: {
                             top: rem-calc(3);
-                            right: rem-calc(1);
+                            right: rem-calc(3);
                         }
                         &::before {
                             @include icon($icon-cross, false);
