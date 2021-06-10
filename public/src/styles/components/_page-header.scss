@@ -87,6 +87,13 @@
                         color: $header-settings-hover-background-color;
                     }
                 }
+                &::before {
+                    @include icon($icon-cog, true);
+                    font: {
+                        size: rem-calc(30);
+                    }
+                    color: white;
+                }
             }
         }
     }
