@@ -126,7 +126,8 @@
                 align: center;
             }
             width: 100%;
-            button {
+            button,
+            a {
                 @include default-button-states();
                 display: block;
                 color: white;

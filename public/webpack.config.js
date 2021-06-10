@@ -47,11 +47,11 @@ module.exports = (env, argv) => {
             ]
         },
         plugins: [
-            new CopyPlugin({
-                patterns: [
-                    {from: "../vendor/shadown125/susanoo/public/build/", to: "susanoo/"},
-                ]
-            })
+            // new CopyPlugin({
+            //     patterns: [
+            //         {from: "../vendor/shadown125/susanoo/public/build/", to: "susanoo/"},
+            //     ]
+            // })
         ],
         module: {
             rules: [
