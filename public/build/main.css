@@ -1672,6 +1672,7 @@ body.login .content-wrapper {
   cursor: pointer;
 }
 .todos .todos-wrapper ul li .header a {
+  padding-top: 1px;
   padding-left: 0.1875rem;
 }
 .todos .todos-wrapper ul li .header .button-complete {
@@ -1701,6 +1702,8 @@ body.login .content-wrapper {
 .todos .todos-wrapper ul li .header .button-complete::before {
   content: "";
   color: #26F596;
+  padding-left: 0.1875rem;
+  padding-top: 0.1875rem;
 }
 .todos .todos-wrapper ul li .header .button-delete,
 .todos .todos-wrapper ul li .header .button-edit {

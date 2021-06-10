@@ -135,6 +135,7 @@
                     }
                     a {
                         padding: {
+                            top: 1px;
                             left: rem-calc(3);
                         }
                     }
@@ -143,9 +144,14 @@
                         background: {
                             color: $todos-button-complete-background-color;
                         }
+
                         &::before {
                             @include icon($icon-check, false);
                             color: $todos-button-complete-icon-color;
+                            padding: {
+                                left: rem-calc(3);
+                                top: rem-calc(3);
+                            }
                         }
                     }
                     .button-delete,

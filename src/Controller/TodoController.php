@@ -130,4 +130,24 @@ class TodoController extends AbstractController
 
         return $this->redirectToRoute('todo');
     }
+
+    #[Route('/complete-todo/{todo}', name: 'complete_todo')]
+    public function completeTodo(TodoList $todo)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $doneTodo = new DoneTodo();
+
+        $doneTodo->setTitle($todo->getTitle());
+        $doneTodo->setUserId($todo->getUserId());
+        $doneTodo->setDescription($todo->getDescription());
+        $doneTodo->setCreatedAt($todo->getCreated());
+
+        $em->persist($doneTodo);
+
+        $em->remove($todo);
+        $em->flush();
+
+        return $this->redirectToRoute('todo');
+    }
 }

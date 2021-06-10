@@ -16,10 +16,7 @@
                         <div class="header">
                             <div class="circle"></div>
                             <h3 class="h3 headline">{{ todo.title }}</h3>
-                            <form action="./?action=doneTodo" method="post">
-                                <input type="hidden" name="id" value="">
-                                <button class="button-complete"></button>
-                            </form>
+                            <a href="{{ path('complete_todo', {'todo': todo.id}) }}" class="button-complete"></a>
                             <form action="./?action=getEditTodo" method="post">
                                 <input type="hidden" name="id" value="">
                                 <button class="button-edit"></button>
