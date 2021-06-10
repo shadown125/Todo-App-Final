@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\TodoList;
 use App\Entity\TodoUser;
+use App\Form\TodoListType;
 use App\Form\TodoUserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,14 +19,33 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class TodoController extends AbstractController
 {
     #[Route('/todo', name: 'todo')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
         $userId = $this->get('security.token_storage')->getToken()->getUser()->getId();
 
         $todos = $this->getDoctrine()->getRepository(TodoList::class)->findBy(['user_id' => $userId]);
 
+        $todo = new TodoList();
+        $form = $this->createForm(TodoListType::class, $todo);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $todo->setUserId($userId);
+            $todo->setTitle($request->request->get('todo_list')['title']);
+            $todo->setDescription($request->request->get('todo_list')['description']);
+            $todo->setCreated(new \DateTime());
+
+            $entityManager->persist($todo);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('todo');
+        }
+
         return $this->render('todo/index.html.twig', [
-            'todos' => $todos
+            'todos' => $todos,
+            'form' => $form->createView()
         ]);
     }
 
@@ -86,6 +106,13 @@ class TodoController extends AbstractController
         );
         $this->get('security.token_storage')->setToken($token);
         $this->get('session')->set('_security_main', serialize($token));
+    }
+
+    #[Route('/create-todo', name: 'create_todo')]
+    public function createTodo(Request $request)
+    {
+
+        return $this->redirectToRoute('todo');
     }
 
     #[Route('/delete-todo/{todo}', name: 'delete_todo')]

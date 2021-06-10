@@ -1,18 +1,28 @@
 <div class="todo-popup" id="todo-popup">
     <div class="content">
         <a href="./todo/" class="button"></a>
-        <form action="./?action=create" class="add-todo" method="post">
+            {{ form_start(form, {'attr': {'novalidate':'novalidate', 'class':'add-todo'}}) }}
             <div>
                 <label for="title">Title: <sup>*</sup></label>
-                <input type="text" name="title" class="title" id="title" placeholder="Task name" required>
+                {% if form.title.vars.errors|length %}
+                    {{ form_widget(form.title, { 'attr': {'class': 'title is-invalid', 'placeholder': 'Title'} }) }}
+                {% else %}
+                    {{ form_widget(form.title, { 'attr': {'class': 'title', 'placeholder': 'Your first name'} }) }}
+                {% endif %}
+                <span>
+                    {{ form_errors(form.title) }}
+                </span>
             </div>
             <div>
                 <label for="description">Description:</label>
-                <textarea name="description" id="description" class="description" placeholder="Description text for your Task (Optional)"></textarea>
+                {{ form_widget(form.description, { 'attr': {'class': 'description', 'placeholder': 'Description text for your Task (Optional)'} }) }}
+                <span>
+                    {{ form_errors(form.description) }}
+                </span>
             </div>
             <div>
                 <button class="submit" type="submit">Submit</button>
             </div>
-        </form>
+            {{ form_end(form) }}
     </div>
 </div>

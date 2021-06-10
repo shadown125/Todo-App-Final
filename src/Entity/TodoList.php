@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\TodoListRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="todo_lists")
@@ -24,6 +25,7 @@ class TodoList
     private $user_id;
 
     /**
+     * @Assert\NotBlank (message = "Please enter a Title.")
      * @ORM\Column(type="string", length=255)
      */
     private $title;
