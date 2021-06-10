@@ -30,7 +30,7 @@
                 {% block main %}{% endblock %}
             </div>
         </div>
-        {{ include('todo/twigBlocks/todo-popup.html.twig') }}
+        {% block popup %}{% endblock %}
         {{ include('todo/twigBlocks/settings.html.twig') }}
         <div class="blur"></div>
     </main>

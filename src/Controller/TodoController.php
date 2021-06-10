@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\DoneTodo;
 use App\Entity\TodoList;
 use App\Entity\TodoUser;
 use App\Form\TodoListType;
@@ -46,6 +47,18 @@ class TodoController extends AbstractController
         return $this->render('todo/index.html.twig', [
             'todos' => $todos,
             'form' => $form->createView()
+        ]);
+    }
+
+    #[Route('/done-todos', name: 'done_todos')]
+    public function doneTodos()
+    {
+        $userId = $this->get('security.token_storage')->getToken()->getUser()->getId();
+
+        $DoneTodos = $this->getDoctrine()->getRepository(DoneTodo::class)->findBy(['user_id' => $userId]);
+
+        return $this->render('todo/doneTodos.html.twig', [
+            'todos' => $DoneTodos
         ]);
     }
 
