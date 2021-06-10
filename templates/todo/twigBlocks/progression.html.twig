@@ -7,8 +7,10 @@
         <h2 class="headline h2">Today's Tasks</h2>
         <div class="progression-bar"><div class="progressed"></div></div>
         <div class="additional-data-wrapper">
-            <div class="done">Done Todo: <span class="doneCounter">1</span></div>
-            <div class="todo">Must do: <span class="todoCounter">7</span></div>
+            <div class="done">Done Todo: <span class="doneCounter">{{ doneTodos|length }}</span></div>
+            {% if app.request.get('_route') != 'done_todos' %}
+                <div class="todo">Must do: <span class="todoCounter">{{ todos|length }}</span></div>
+            {% endif %}
         </div>
     </div>
 </section>

@@ -25,6 +25,7 @@ class TodoController extends AbstractController
         $userId = $this->get('security.token_storage')->getToken()->getUser()->getId();
 
         $todos = $this->getDoctrine()->getRepository(TodoList::class)->findBy(['user_id' => $userId]);
+        $doneTodos = $this->getDoctrine()->getRepository(DoneTodo::class)->findBy(['user_id' => $userId]);
 
         $todo = new TodoList();
         $form = $this->createForm(TodoListType::class, $todo);
@@ -46,7 +47,8 @@ class TodoController extends AbstractController
 
         return $this->render('todo/index.html.twig', [
             'todos' => $todos,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'doneTodos' => $doneTodos
         ]);
     }
 
@@ -58,7 +60,8 @@ class TodoController extends AbstractController
         $DoneTodos = $this->getDoctrine()->getRepository(DoneTodo::class)->findBy(['user_id' => $userId]);
 
         return $this->render('todo/doneTodos.html.twig', [
-            'todos' => $DoneTodos
+            'todos' => $DoneTodos,
+            'doneTodos' => $DoneTodos
         ]);
     }
 
