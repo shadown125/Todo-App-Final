@@ -316,6 +316,11 @@ textarea {
   }
 }
 
+.hidden-input {
+  display: none;
+  visibility: hidden;
+}
+
 .background-blur {
   height: 100vh;
   width: 100%;

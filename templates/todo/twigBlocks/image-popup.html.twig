@@ -1,11 +1,11 @@
 <div class="image-container" data-image-container>
     {{ include('todo/twigBlocks/profile-popup.html.twig') }}
-    <form action="#" method="post" class="form" enctype="multipart/form-data">
+    {{ form_start(userImage, {'attr': {'novalidate':'novalidate', 'class':'form'}}) }}
         <div>
-            <label for="profile-image">Change profile image:</label>
-            <input type="file" class="input-option" name="profile-image" id="profile-image">
+            <label for="profile_image">Change profile image:</label>
+            {{ form_widget(userImage.profile_image, { 'attr': {'class': 'input-option'} }) }}
         </div>
         <button type="submit" class="submit">Apply</button>
-    </form>
+    {{ form_end(userImage) }}
     {{ include('todo/twigBlocks/button-back-popup.html.twig') }}
 </div>

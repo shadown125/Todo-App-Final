@@ -6,6 +6,9 @@ use App\Entity\DoneTodo;
 use App\Entity\TodoList;
 use App\Entity\TodoUser;
 use App\Form\TodoListType;
+use App\Form\TodoUserImageType;
+use App\Form\TodoUserNameType;
+use App\Form\TodoUserPasswordType;
 use App\Form\TodoUserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +23,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class TodoController extends AbstractController
 {
     #[Route('/todo', name: 'todo')]
-    public function index(Request $request): Response
+    public function index(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
         $userId = $this->get('security.token_storage')->getToken()->getUser()->getId();
 
@@ -28,10 +31,18 @@ class TodoController extends AbstractController
         $doneTodos = $this->getDoctrine()->getRepository(DoneTodo::class)->findBy(['user_id' => $userId]);
 
         $todo = new TodoList();
-        $form = $this->createForm(TodoListType::class, $todo);
+        $user = $this->getUser();
+        $formTodo = $this->createForm(TodoListType::class, $todo);
+        $userNameForm = $this->createForm(TodoUserNameType::class, $user);
+        $userPasswordForm = $this->createForm(TodoUserPasswordType::class, $user);
+        $formImage = $this->createForm(TodoUserImageType::class, $user);
 
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
+        $this->updateName($user, $userNameForm, $request);
+        $this->updatePassword($user, $userPasswordForm, $request, $passwordEncoder);
+        $this->uploadImage($formImage, $user, $request);
+
+        $formTodo->handleRequest($request);
+        if($formTodo->isSubmitted() && $formTodo->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
 
             $todo->setUserId($userId);
@@ -41,13 +52,15 @@ class TodoController extends AbstractController
 
             $entityManager->persist($todo);
             $entityManager->flush();
-
             return $this->redirectToRoute('todo');
         }
 
         return $this->render('todo/index.html.twig', [
             'todos' => $todos,
-            'form' => $form->createView(),
+            'form' => $formTodo->createView(),
+            'userNameForm' => $userNameForm->createView(),
+            'userPasswordForm' => $userPasswordForm->createView(),
+            'userImage' => $formImage->createView(),
             'doneTodos' => $doneTodos
         ]);
     }
@@ -151,6 +164,71 @@ class TodoController extends AbstractController
         $em->remove($todo);
         $em->flush();
 
+        return $this->redirectToRoute('todo');
+    }
+
+    #[Route('/delete-account', name: 'delete_account')]
+    public function deleteAccount()
+    {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush();
+
+        session_destroy();
+
+        return $this->redirectToRoute('todo_login');
+    }
+
+    private function updateName($user, $userNameForm, $request)
+    {
+        $userNameForm->handleRequest($request);
+        if($userNameForm->isSubmitted() && $userNameForm->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $user->setName($request->request->get('todo_user_name')['name']);
+            $user->setLastName($request->request->get('todo_user_name')['last_name']);
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+            return $this->redirectToRoute('todo');
+        }
+        return $this->redirectToRoute('todo');
+    }
+
+    private function updatePassword($user, $userPasswordForm, $request, $passwordEncoder)
+    {
+        $userPasswordForm->handleRequest($request);
+        if($userPasswordForm->isSubmitted() && $userPasswordForm->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $password = $passwordEncoder->encodePassword($user, $request->request->get('todo_user_password')['password']['first']);
+            $user->setPassword($password);
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+            return $this->redirectToRoute('todo');
+        }
+        return $this->redirectToRoute('todo');
+    }
+
+    private function uploadImage($formImage, $user, $request)
+    {
+        $formImage->handleRequest($request);
+        if($formImage->isSubmitted() && $formImage->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $fileNumber = random_int(1, 100000);
+//            $fileName = $fileNumber . '.' . $request->request->get('todo_user_image')['profile_image'];
+//            dump($fileName);
+
+//            $user->setProfileImage($fileName);
+
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('todo');
+        }
         return $this->redirectToRoute('todo');
     }
 }

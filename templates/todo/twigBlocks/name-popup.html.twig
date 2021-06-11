@@ -1,15 +1,21 @@
 <div class="name-container" data-name-container>
     {{ include('todo/twigBlocks/profile-popup.html.twig') }}
-    <form action="#" method="post" class="form">
+    {{ form_start(userNameForm, {'attr': {'novalidate':'novalidate', 'class':'form'}}) }}
         <div>
             <label for="new-name">New first name:</label>
-            <input type="text" class="input-option" name="new-name" id="new-name" placeholder="Your new first name">
+                {{ name|raw }}
+            <span>
+                {{ form_errors(userNameForm.name) }}
+            </span>
         </div>
         <div>
             <label for="new-last-name">New last name:</label>
-            <input type="text" class="input-option" name="new-last-name" id="new-last-name" placeholder="Your new last name">
+                {{ lastname|raw }}
+            <span>
+                {{ form_errors(userNameForm.last_name) }}
+            </span>
         </div>
         <button class="submit" type="submit">Apply</button>
-    </form>
+    {{ form_end(userNameForm) }}
     {{ include('todo/twigBlocks/button-back-popup.html.twig') }}
 </div>

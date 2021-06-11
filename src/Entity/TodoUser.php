@@ -80,6 +80,7 @@ class TodoUser implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\File(mimeTypes={"image/jpeg", "image/jpg", "image/png"})
      */
     private $profile_image;
 
@@ -253,7 +254,7 @@ class TodoUser implements UserInterface
         return $this->profile_image;
     }
 
-    public function setProfileImage(string $profile_image): self
+    public function setProfileImage($profile_image): self
     {
         $this->profile_image = $profile_image;
 

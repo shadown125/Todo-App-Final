@@ -1,8 +1,6 @@
 <div class="delete-container" data-delete-container>
     {{ include('todo/twigBlocks/profile-popup.html.twig') }}
     <h2 class="h2 headline">Do you really want to delete your account?</h2>
-    <form action="#" method="post">
-        <button type="submit" class="submit">Yes</button>
-    </form>
+    <a href="{{ path('delete_account') }}" type="submit" class="submit">Yes</a>
     {{ include('todo/twigBlocks/button-back-popup.html.twig') }}
 </div>

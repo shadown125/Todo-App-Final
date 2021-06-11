@@ -29,6 +29,22 @@
                 <a href="{{ path('todo_logout') }}">Logout</a>
             </div>
         </div>
+        {% if userNameForm.name.vars.errors|length %}
+            {% set name = form_widget(userNameForm.name, { 'attr': {'class': 'input-option is-invalid', 'placeholder': 'Your new first name'} }) %}
+        {% else %}
+            {% set name = form_widget(userNameForm.name, { 'attr': {'class': 'input-option', 'placeholder': 'Your first name'} }) %}
+        {% endif %}
+        {% if userNameForm.last_name.vars.errors|length %}
+            {% set lastname = form_widget(userNameForm.last_name, { 'attr': {'class': 'input-option is-invalid', 'placeholder': 'Your new last name'} }) %}
+        {% else %}
+            {% set lastname = form_widget(userNameForm.last_name, { 'attr': {'class': 'input-option', 'placeholder': 'Your first name'} }) %}
+        {% endif %}
+        {% if userPasswordForm.password.first.vars.errors|length %}
+            {% set passwordFirst =  form_widget(userPasswordForm.password.first, { 'attr': {'class': 'input-option is-invalid', 'placeholder': 'Your current password'} }) %}
+        {% else %}
+            {% set passwordFirst = form_widget(userPasswordForm.password.first, { 'attr': {'class': 'input-option', 'placeholder': 'Your password'} }) %}
+        {% endif %}
+        {% set passwordConfirm = form_widget(userPasswordForm.password.second, { 'attr': {'class': 'input-option', 'placeholder': 'Repeat new password'} }) %}
         {{ include('todo/twigBlocks/name-popup.html.twig') }}
         {{ include('todo/twigBlocks/password-popup.html.twig') }}
         {{ include('todo/twigBlocks/image-popup.html.twig') }}
