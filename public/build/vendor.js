@@ -1,12 +1,12 @@
 (self["webpackChunktodo_app_final"] = self["webpackChunktodo_app_final"] || []).push([["vendor"],{
 
-/***/ "./node_modules/jquery/dist/jquery.js?22a0":
+/***/ "./node_modules/jquery/dist/jquery-exposed.js":
 /*!****************************************************!*\
   !*** ./node_modules/jquery/dist/jquery-exposed.js ***!
   \****************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
-var ___EXPOSE_LOADER_IMPORT___ = __webpack_require__(/*! -!./jquery.js */ "./node_modules/jquery/dist/jquery.js?1157");
+var ___EXPOSE_LOADER_IMPORT___ = __webpack_require__(/*! -!./jquery.js */ "./node_modules/jquery/dist/jquery.js");
 
 var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = __webpack_require__(/*! ../../expose-loader/dist/runtime/getGlobalThis.js */ "./node_modules/expose-loader/dist/runtime/getGlobalThis.js");
 
@@ -2843,7 +2843,7 @@ for (var COLLECTION_NAME in DOMIterables) {
 
 /***/ }),
 
-/***/ "./node_modules/jquery/dist/jquery.js?1157":
+/***/ "./node_modules/jquery/dist/jquery.js":
 /*!********************************************!*\
   !*** ./node_modules/jquery/dist/jquery.js ***!
   \********************************************/

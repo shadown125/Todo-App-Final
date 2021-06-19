@@ -33,4 +33,10 @@
             }
         }
     }
+    ul {
+        @include reset-list();
+        > li {
+            color: #d60f0f;
+        }
+    }
 }
