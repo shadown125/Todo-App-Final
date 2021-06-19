@@ -15,15 +15,7 @@
                             <div class="header">
                                 <div class="circle"></div>
                                 <h3 class="h3 headline">{{ todo.title }}</h3>
-                                <form action="./?action=doneTodo" method="post">
-                                    <input type="hidden" name="id" value="">
-                                    <button class="button-complete"></button>
-                                </form>
-                                <form action="./?action=getEditTodo" method="post">
-                                    <input type="hidden" name="id" value="">
-                                    <button class="button-edit"></button>
-                                </form>
-                                <a href="{{ path('delete_todo', {'todo': todo.id}) }}" class="button-delete"></a>
+                                <a href="{{ path('delete_done_todo', {'todo': todo.id}) }}" class="button-delete"></a>
                             </div>
                             <div class="description">{{ todo.description }}</div>
                         </li>

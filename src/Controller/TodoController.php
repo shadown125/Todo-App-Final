@@ -66,14 +66,29 @@ class TodoController extends AbstractController
     }
 
     #[Route('/done-todos', name: 'done_todos')]
-    public function doneTodos()
+    public function doneTodos(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $userId = $this->get('security.token_storage')->getToken()->getUser()->getId();
 
         $DoneTodos = $this->getDoctrine()->getRepository(DoneTodo::class)->findBy(['user_id' => $userId]);
 
+        $todo = new TodoList();
+        $user = $this->getUser();
+        $formTodo = $this->createForm(TodoListType::class, $todo);
+        $userNameForm = $this->createForm(TodoUserNameType::class, $user);
+        $userPasswordForm = $this->createForm(TodoUserPasswordType::class, $user);
+        $formImage = $this->createForm(TodoUserImageType::class, $user);
+
+        $this->updateName($user, $userNameForm, $request);
+        $this->updatePassword($user, $userPasswordForm, $request, $passwordEncoder);
+        $this->uploadImage($formImage, $user, $request);
+
         return $this->render('todo/doneTodos.html.twig', [
             'todos' => $DoneTodos,
+            'form' => $formTodo->createView(),
+            'userNameForm' => $userNameForm->createView(),
+            'userPasswordForm' => $userPasswordForm->createView(),
+            'userImage' => $formImage->createView(),
             'doneTodos' => $DoneTodos
         ]);
     }
@@ -135,6 +150,16 @@ class TodoController extends AbstractController
         );
         $this->get('security.token_storage')->setToken($token);
         $this->get('session')->set('_security_main', serialize($token));
+    }
+
+    #[Route('/delete-done-todo/{todo}', name: 'delete_done_todo')]
+    public function deleteDoneTodo(DoneTodo $todo)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($todo);
+        $em->flush();
+
+        return $this->redirectToRoute('done_todos');
     }
 
     #[Route('/delete-todo/{todo}', name: 'delete_todo')]
