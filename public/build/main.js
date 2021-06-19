@@ -1,5 +1,130 @@
 (self["webpackChunktodo_app_final"] = self["webpackChunktodo_app_final"] || []).push([["main"],{
 
+/***/ "./src/scripts/PreventInvalidFormSubmissions.js":
+/*!******************************************************!*\
+  !*** ./src/scripts/PreventInvalidFormSubmissions.js ***!
+  \******************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ PreventInvalidFormSubmissions; }
+/* harmony export */ });
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.array.includes.js */ "./node_modules/core-js/modules/es.array.includes.js");
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.string.includes.js */ "./node_modules/core-js/modules/es.string.includes.js");
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js?22a0");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_4__);
+
+
+
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var PreventInvalidFormSubmissions = /*#__PURE__*/function () {
+  function PreventInvalidFormSubmissions() {
+    var _this = this;
+
+    _classCallCheck(this, PreventInvalidFormSubmissions);
+
+    this.todoRegisterForm = jquery__WEBPACK_IMPORTED_MODULE_4___default()('.todo-user-register');
+
+    if (this.todoRegisterForm[0] !== undefined) {
+      this.invalidInput = false;
+      this.todoRegisterForm[0].addEventListener('change', this.todoRegister.bind(this));
+      this.todoRegisterForm.on('click', function (event) {
+        if (!_this.invalidInput) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          _this.todoRegister().bind(_this);
+        }
+      });
+    }
+  }
+
+  _createClass(PreventInvalidFormSubmissions, [{
+    key: "todoRegister",
+    value: function todoRegister() {
+      var _this2 = this;
+
+      var firstPassword;
+      this.todoRegisterForm[0].forEach(function (element, index) {
+        if (element.name === "todo_user[name]" && element.value.length < 3) {
+          element.classList.add("is-invalid");
+          element.nextElementSibling.style.display = 'block';
+          element.nextElementSibling.innerHTML = "This Name Need atleast 3 characters";
+          _this2.invalidInput = false;
+        } else if (element.name === "todo_user[name]" && element.value.length >= 3) {
+          element.classList.remove("is-invalid");
+          element.nextElementSibling.style.display = 'none';
+          element.nextElementSibling.innerHTML = "";
+          _this2.invalidInput = true;
+        }
+
+        if (element.name === "todo_user[email]" && !element.value.includes('@') && !element.value.includes('.')) {
+          element.classList.add("is-invalid");
+          element.nextElementSibling.style.display = 'block';
+          element.nextElementSibling.innerHTML = "The E-Mail is not valid";
+          _this2.invalidInput = false;
+        } else if (element.name === "todo_user[email]" && element.value.includes('@') && element.value.includes('.')) {
+          element.classList.remove("is-invalid");
+          element.nextElementSibling.style.display = 'none';
+          element.nextElementSibling.innerHTML = "";
+          _this2.invalidInput = true;
+        }
+
+        if (element.name === "todo_user[password][first]" && element.value.length < 6) {
+          element.classList.add("is-invalid");
+          element.nextElementSibling.style.display = 'block';
+          element.nextElementSibling.innerHTML = "Your password must contains atleast 6 characters";
+          _this2.invalidInput = false;
+          firstPassword = element.value;
+        } else if (element.name === "todo_user[password][first]" && element.value.length >= 6) {
+          firstPassword = element.value;
+          element.classList.remove("is-invalid");
+          element.nextElementSibling.style.display = 'none';
+          element.nextElementSibling.innerHTML = "";
+          _this2.invalidInput = true;
+        }
+
+        if (element.name === "todo_user[password][second]") {
+          if (element.value === firstPassword) {
+            element.classList.remove("is-invalid");
+            element.nextElementSibling.style.display = 'none';
+            element.nextElementSibling.innerHTML = "";
+            _this2.invalidInput = true;
+          } else if (firstPassword !== '') {
+            _this2.invalidInput = false;
+            element.classList.add("is-invalid");
+            element.nextElementSibling.style.display = 'block';
+            element.nextElementSibling.innerHTML = "Your repeated password don't match your password. Please try again";
+          }
+        }
+      });
+    }
+  }]);
+
+  return PreventInvalidFormSubmissions;
+}();
+
+
+
+/***/ }),
+
 /***/ "./src/scripts/ProgressionBar.js":
 /*!***************************************!*\
   !*** ./src/scripts/ProgressionBar.js ***!
@@ -13,7 +138,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.number.constructor.js */ "./node_modules/core-js/modules/es.number.constructor.js");
 /* harmony import */ var core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery-exposed.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js?22a0");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
 
 
@@ -76,7 +201,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ SettingsEvents; }
 /* harmony export */ });
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery-exposed.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js?22a0");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -182,7 +307,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ ShowAndHideSettings; }
 /* harmony export */ });
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery-exposed.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js?22a0");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -231,7 +356,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ ToggleAsideNavigation; }
 /* harmony export */ });
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery-exposed.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js?22a0");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -295,6 +420,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ProgressionBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProgressionBar */ "./src/scripts/ProgressionBar.js");
 /* harmony import */ var _ShowAndHideSettings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ShowAndHideSettings */ "./src/scripts/ShowAndHideSettings.js");
 /* harmony import */ var _SettingsEvents__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SettingsEvents */ "./src/scripts/SettingsEvents.js");
+/* harmony import */ var _PreventInvalidFormSubmissions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./PreventInvalidFormSubmissions */ "./src/scripts/PreventInvalidFormSubmissions.js");
+
 
 
 
@@ -303,6 +430,7 @@ new _ToggleAsideNavigation__WEBPACK_IMPORTED_MODULE_0__.default();
 new _ProgressionBar__WEBPACK_IMPORTED_MODULE_1__.default();
 new _ShowAndHideSettings__WEBPACK_IMPORTED_MODULE_2__.default();
 new _SettingsEvents__WEBPACK_IMPORTED_MODULE_3__.default();
+new _PreventInvalidFormSubmissions__WEBPACK_IMPORTED_MODULE_4__.default();
 
 /***/ })
 

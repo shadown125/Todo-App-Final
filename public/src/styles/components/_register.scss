@@ -12,8 +12,10 @@
     }
     .button-back {
         margin: {
+            top: rem-calc(-64);
             right: auto;
         }
+        padding: rem-calc(7) rem-calc(28);
         background: {
             color: $register-back-button-background-color;
         }
@@ -24,6 +26,9 @@
         }
     }
     .register-button {
+        margin: {
+            left: auto;
+        }
         background: {
             image: linear-gradient(90deg, #0162c8, #55e7fc);
         }

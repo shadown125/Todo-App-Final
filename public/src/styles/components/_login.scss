@@ -91,6 +91,13 @@
                             }
                         }
                     }
+                    .validation {
+                        display: none;
+                        color: #d60f0f;
+                        margin: {
+                            bottom: 0;
+                        }
+                    }
                 }
             }
             div {
@@ -102,6 +109,13 @@
                     bottom: rem-calc(20);
                 }
                 width: 100%;
+                .validation {
+                    display: none;
+                    color: #d60f0f;
+                    margin: {
+                        bottom: 0;
+                    }
+                }
                 &.submitting-container {
                     flex: {
                         direction: row;

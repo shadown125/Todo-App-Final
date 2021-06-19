@@ -3,7 +3,7 @@
 {% block main %}
 
     <h2 class="title h2">Register</h2>
-    {{ form_start(form, {'attr': {'novalidate':'novalidate', 'class':'form'}}) }}
+    {{ form_start(form, {'attr': {'novalidate':'novalidate', 'class':'form todo-user-register'}}) }}
     <div class="name-wrapper">
         <div>
             <label for="todo_user_name" class="first-name">First name: <sup>*</sup></label>
@@ -12,6 +12,7 @@
             {% else %}
                 {{ form_widget(form.name, { 'attr': {'class': 'input', 'placeholder': 'Your first name'} }) }}
             {% endif %}
+            <div class="validation"></div>
             {{ form_errors(form.name) }}
         </div>
         <div>
@@ -27,6 +28,7 @@
         {% else %}
             {{ form_widget(form.email, { 'attr': {'class': 'email', 'placeholder': 'Your E-Mail'} }) }}
         {% endif %}
+        <div class="validation"></div>
         {{ form_errors(form.email) }}
     </div>
     <div>
@@ -36,17 +38,18 @@
         {% else %}
             {{ form_widget(form.password.first, { 'attr': {'class': 'password', 'placeholder': 'Your password'} }) }}
         {% endif %}
+        <div class="validation"></div>
         {{ form_errors(form.password.first) }}
     </div>
     <div>
         <label for="confirm-password" class="confirm-password">Confirm password: <sup>*</sup></label>
         {{ form_widget(form.password.second, { 'attr': {'class': 'confirm-password', 'placeholder': 'Confirm your password'} }) }}
         {{ form_errors(form.password.second) }}
+        <div class="validation"></div>
     </div>
     <div class="submitting-container">
-        <a href="{{ path('todo_login') }}" class="button-back">Back</a>
         <button class="register-button" type="submit">Register</button>
     </div>
     {{ form_end(form) }}
-
+    <a href="{{ path('todo_login') }}" class="button-back">Back</a>
 {% endblock %}

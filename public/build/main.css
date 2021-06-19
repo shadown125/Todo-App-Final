@@ -979,12 +979,24 @@ body.login .content-wrapper {
     padding-left: 1.25rem;
   }
 }
+.login .container .form .name-wrapper div .validation,
+.register .container .form .name-wrapper div .validation {
+  display: none;
+  color: #d60f0f;
+  margin-bottom: 0;
+}
 .login .container .form div,
 .register .container .form div {
   display: flex;
   flex-direction: column;
   margin-bottom: 1.25rem;
   width: 100%;
+}
+.login .container .form div .validation,
+.register .container .form div .validation {
+  display: none;
+  color: #d60f0f;
+  margin-bottom: 0;
 }
 .login .container .form div.submitting-container,
 .register .container .form div.submitting-container {
@@ -1469,13 +1481,16 @@ body.login .content-wrapper {
   background-color: #A4508B;
 }
 .register .button-back {
+  margin-top: -4rem;
   margin-right: auto;
+  padding: 0.4375rem 1.75rem;
   background-color: #BA265D;
 }
 .register .button-back:after {
   background-color: #BA265D;
 }
 .register .register-button {
+  margin-left: auto;
   background-image: linear-gradient(90deg, #0162c8, #55e7fc);
 }
 .register .register-button:after {
