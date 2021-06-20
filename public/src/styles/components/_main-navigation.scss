@@ -71,7 +71,8 @@
                 padding: {
                     left: rem-calc(50);
                 }
-                a {
+                a,
+                button {
                     &::after {
                         content: "";
                         width: rem-calc(36);
@@ -93,7 +94,8 @@
                     }
                 }
             }
-            a {
+            a,
+            button {
                 display: flex;
                 padding: {
                     top: rem-calc(4);
@@ -142,6 +144,50 @@
         .settings {
             @include breakpoint(large) {
                 display: none;
+            }
+        }
+        .settings-left {
+            button {
+                display: block;
+                padding: {
+                    top: rem-calc(10);
+                }
+                &:hover {
+                    color: #ff6767;
+                }
+                &::before {
+                    @include icon($icon-cog, false);
+                    font: {
+                        size: rem-calc(24);
+                    }
+                    left: rem-calc(6);
+                    top: rem-calc(7);
+                }
+                &::after {
+                    background: {
+                        image: linear-gradient(to right bottom, #667db6, #0082c8);
+                    }
+                }
+            }
+        }
+        .logout {
+            a {
+                &::before {
+                    @include icon($icon-log-out, false);
+                    font: {
+                        size: rem-calc(20);
+                    }
+                    left: rem-calc(10);
+                    top: rem-calc(8);
+                }
+                &:hover {
+                    color: #ff6767;
+                }
+                &::after {
+                    background: {
+                        image: linear-gradient(to right bottom, #333333, #dd1818);
+                    }
+                }
             }
         }
         .logout,
