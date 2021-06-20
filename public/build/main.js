@@ -95,10 +95,12 @@ var PreventInvalidFormSubmissions = /*#__PURE__*/function () {
     this.settingsNameForm = jquery__WEBPACK_IMPORTED_MODULE_4___default()('.settings-name');
     this.settingsPasswordForm = jquery__WEBPACK_IMPORTED_MODULE_4___default()('.settings-password');
     this.settingsImageForm = jquery__WEBPACK_IMPORTED_MODULE_4___default()('.settings-image');
+    this.addTodoForm = jquery__WEBPACK_IMPORTED_MODULE_4___default()('.add-todo-popup');
     this.invalidInput = true;
     this.invalidNameOptionsInputs = true;
     this.invalidPasswordOptionsInputs = true;
     this.invalidImageOptionsInput = true;
+    this.invalidAddTodoInput = true;
 
     if (this.todoRegisterForm[0] !== undefined) {
       this.todoRegisterForm[0].addEventListener('change', this.todoRegister.bind(this));
@@ -146,12 +148,49 @@ var PreventInvalidFormSubmissions = /*#__PURE__*/function () {
         }
       });
     }
+
+    if (this.addTodoForm[0] !== undefined) {
+      this.addTodoForm[0].addEventListener('change', this.changeAddTodo.bind(this));
+      this.addTodoForm.on('submit', function (event) {
+        if (_this.invalidAddTodoInput) {
+          event.preventDefault();
+
+          _this.changeAddTodo();
+        }
+      });
+    }
   }
 
   _createClass(PreventInvalidFormSubmissions, [{
+    key: "changeAddTodo",
+    value: function changeAddTodo() {
+      var _this2 = this;
+
+      var validInputs = [];
+      this.addTodoForm[0].forEach(function (element, index) {
+        if (element.name === "todo_list[title]" && element.value === '') {
+          element.classList.add("is-invalid");
+          element.nextElementSibling.style.display = 'block';
+          element.nextElementSibling.innerHTML = "This field can't be empty";
+          validInputs.push(0);
+        } else if (element.name === "todo_list[title]" && element.value !== '') {
+          element.classList.remove("is-invalid");
+          element.nextElementSibling.style.display = 'none';
+          element.nextElementSibling.innerHTML = "";
+          validInputs.push(1);
+        }
+      });
+      this.invalidAddTodoInput = false;
+      validInputs.forEach(function (element) {
+        if (element === 0) {
+          _this2.invalidAddTodoInput = true;
+        }
+      });
+    }
+  }, {
     key: "todoRegister",
     value: function todoRegister() {
-      var _this2 = this;
+      var _this3 = this;
 
       var firstPassword;
       var validInputs = [];
@@ -211,14 +250,14 @@ var PreventInvalidFormSubmissions = /*#__PURE__*/function () {
       this.invalidInput = false;
       validInputs.forEach(function (element) {
         if (element === 0) {
-          _this2.invalidInput = true;
+          _this3.invalidInput = true;
         }
       });
     }
   }, {
     key: "changeName",
     value: function changeName() {
-      var _this3 = this;
+      var _this4 = this;
 
       var validInputs = [];
       this.settingsNameForm[0].forEach(function (element, index) {
@@ -237,14 +276,14 @@ var PreventInvalidFormSubmissions = /*#__PURE__*/function () {
       this.invalidNameOptionsInputs = false;
       validInputs.forEach(function (element) {
         if (element === 0) {
-          _this3.invalidNameOptionsInputs = true;
+          _this4.invalidNameOptionsInputs = true;
         }
       });
     }
   }, {
     key: "changePassword",
     value: function changePassword() {
-      var _this4 = this;
+      var _this5 = this;
 
       var firstPassword;
       var validInputs = [];
@@ -280,14 +319,14 @@ var PreventInvalidFormSubmissions = /*#__PURE__*/function () {
       this.invalidPasswordOptionsInputs = false;
       validInputs.forEach(function (element) {
         if (element === 0) {
-          _this4.invalidPasswordOptionsInputs = true;
+          _this5.invalidPasswordOptionsInputs = true;
         }
       });
     }
   }, {
     key: "changeImage",
     value: function changeImage() {
-      var _this5 = this;
+      var _this6 = this;
 
       var validInputs = [];
       this.settingsImageForm[0].forEach(function (element, index) {
@@ -306,7 +345,7 @@ var PreventInvalidFormSubmissions = /*#__PURE__*/function () {
       this.invalidImageOptionsInput = false;
       validInputs.forEach(function (element) {
         if (element === 0) {
-          _this5.invalidImageOptionsInput = true;
+          _this6.invalidImageOptionsInput = true;
         }
       });
     }

@@ -782,6 +782,14 @@ a:hover {
   color: white;
   margin-bottom: 0.375rem;
 }
+.todo-popup .content .add-todo div input.is-invalid {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #d60f0f;
+}
+.todo-popup .content .add-todo div .validation {
+  margin-top: 0;
+}
 .todo-popup .content .add-todo div .title {
   width: 100%;
   color: #7B8797;

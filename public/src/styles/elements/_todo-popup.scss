@@ -80,6 +80,20 @@
                         bottom: rem-calc(6);
                     }
                 }
+                input {
+                    &.is-invalid {
+                        border: {
+                            style: solid;
+                            width: 2px;
+                            color: $register-invalid-input-border-color;
+                        }
+                    }
+                }
+                .validation {
+                    margin: {
+                        top: 0;
+                    }
+                }
                 .title {
                     @include custom-search-input();
                 }

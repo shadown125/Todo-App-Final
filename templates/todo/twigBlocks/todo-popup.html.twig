@@ -1,7 +1,7 @@
 <div class="todo-popup" id="todo-popup" data-todo-popup>
     <div class="content">
         <button class="button" data-button-close-add-todo-popup></button>
-            {{ form_start(form, {'attr': {'novalidate':'novalidate', 'class':'add-todo'}}) }}
+            {{ form_start(form, {'attr': {'novalidate':'novalidate', 'class':'add-todo add-todo-popup'}}) }}
             <div>
                 <label for="title">Title: <sup>*</sup></label>
                 {% if form.title.vars.errors|length %}
@@ -9,6 +9,7 @@
                 {% else %}
                     {{ form_widget(form.title, { 'attr': {'class': 'title', 'placeholder': 'Your first name'} }) }}
                 {% endif %}
+                <div class="validation"></div>
                 <span>
                     {{ form_errors(form.title) }}
                 </span>

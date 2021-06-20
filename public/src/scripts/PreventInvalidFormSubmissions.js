@@ -6,10 +6,12 @@ export default class PreventInvalidFormSubmissions {
         this.settingsNameForm = $('.settings-name');
         this.settingsPasswordForm = $('.settings-password');
         this.settingsImageForm = $('.settings-image');
+        this.addTodoForm = $('.add-todo-popup');
         this.invalidInput = true;
         this.invalidNameOptionsInputs = true;
         this.invalidPasswordOptionsInputs = true;
         this.invalidImageOptionsInput = true;
+        this.invalidAddTodoInput = true;
         if (this.todoRegisterForm[0] !== undefined) {
             this.todoRegisterForm[0].addEventListener('change', this.todoRegister.bind(this));
             this.todoRegisterForm.on('click', (event) => {
@@ -49,6 +51,39 @@ export default class PreventInvalidFormSubmissions {
                 }
             })
         }
+        if (this.addTodoForm[0] !== undefined) {
+            this.addTodoForm[0].addEventListener('change', this.changeAddTodo.bind(this));
+            this.addTodoForm.on('submit', event => {
+                if (this.invalidAddTodoInput) {
+                    event.preventDefault();
+                    this.changeAddTodo();
+                }
+            })
+        }
+    }
+    changeAddTodo() {
+        let validInputs = [];
+
+        this.addTodoForm[0].forEach((element, index) => {
+            if (element.name === "todo_list[title]" && element.value === '') {
+                element.classList.add("is-invalid")
+                element.nextElementSibling.style.display = 'block';
+                element.nextElementSibling.innerHTML = "This field can't be empty";
+                validInputs.push(0)
+            } else if (element.name === "todo_list[title]" && element.value !== '') {
+                element.classList.remove("is-invalid")
+                element.nextElementSibling.style.display = 'none';
+                element.nextElementSibling.innerHTML = "";
+                validInputs.push(1)
+            }
+        })
+
+        this.invalidAddTodoInput = false;
+        validInputs.forEach(element => {
+            if (element === 0) {
+                this.invalidAddTodoInput = true;
+            }
+        })
     }
 
     todoRegister() {
