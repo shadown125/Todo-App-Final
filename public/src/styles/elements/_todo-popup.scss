@@ -12,6 +12,15 @@
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s;
+    &.is-active {
+        opacity: 1;
+        visibility: visible;
+        .content {
+            overflow: visible;
+            opacity: 1;
+            transform: unset;
+        }
+    }
     &:target {
         opacity: 1;
         visibility: visible;
@@ -40,6 +49,12 @@
             width: 0;
             margin: {
                 left: auto;
+            }
+            color: white;
+            cursor: pointer;
+            transition: color .2s linear;
+            &:hover {
+                color: $todo-popup-close-button-color;
             }
             &::before {
                 @include icon($icon-cancel-circle);

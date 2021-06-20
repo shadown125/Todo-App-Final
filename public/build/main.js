@@ -1,5 +1,56 @@
 (self["webpackChunktodo_app_final"] = self["webpackChunktodo_app_final"] || []).push([["main"],{
 
+/***/ "./src/scripts/AddTodoEvents.js":
+/*!**************************************!*\
+  !*** ./src/scripts/AddTodoEvents.js ***!
+  \**************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ AddTodoEvents; }
+/* harmony export */ });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js?22a0");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var AddTodoEvents = /*#__PURE__*/function () {
+  function AddTodoEvents() {
+    _classCallCheck(this, AddTodoEvents);
+
+    this.buttonAddTodo = jquery__WEBPACK_IMPORTED_MODULE_0___default()('[data-button-add-todo]');
+    this.buttonCloseAddTodo = jquery__WEBPACK_IMPORTED_MODULE_0___default()('[data-button-close-add-todo-popup]');
+    this.addTodoPopup = jquery__WEBPACK_IMPORTED_MODULE_0___default()('[data-todo-popup]');
+    this.buttonAddTodo.on('click', this.showAddTodoPopup.bind(this));
+    this.buttonCloseAddTodo.on('click', this.hideAddTodoPopup.bind(this));
+  }
+
+  _createClass(AddTodoEvents, [{
+    key: "showAddTodoPopup",
+    value: function showAddTodoPopup() {
+      this.addTodoPopup.addClass('is-active');
+    }
+  }, {
+    key: "hideAddTodoPopup",
+    value: function hideAddTodoPopup() {
+      this.addTodoPopup.removeClass('is-active');
+    }
+  }]);
+
+  return AddTodoEvents;
+}();
+
+
+
+/***/ }),
+
 /***/ "./src/scripts/PreventInvalidFormSubmissions.js":
 /*!******************************************************!*\
   !*** ./src/scripts/PreventInvalidFormSubmissions.js ***!
@@ -564,6 +615,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ShowAndHideSettings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ShowAndHideSettings */ "./src/scripts/ShowAndHideSettings.js");
 /* harmony import */ var _SettingsEvents__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SettingsEvents */ "./src/scripts/SettingsEvents.js");
 /* harmony import */ var _PreventInvalidFormSubmissions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./PreventInvalidFormSubmissions */ "./src/scripts/PreventInvalidFormSubmissions.js");
+/* harmony import */ var _AddTodoEvents__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AddTodoEvents */ "./src/scripts/AddTodoEvents.js");
+
 
 
 
@@ -574,6 +627,7 @@ new _ProgressionBar__WEBPACK_IMPORTED_MODULE_1__.default();
 new _ShowAndHideSettings__WEBPACK_IMPORTED_MODULE_2__.default();
 new _SettingsEvents__WEBPACK_IMPORTED_MODULE_3__.default();
 new _PreventInvalidFormSubmissions__WEBPACK_IMPORTED_MODULE_4__.default();
+new _AddTodoEvents__WEBPACK_IMPORTED_MODULE_5__.default();
 
 /***/ })
 

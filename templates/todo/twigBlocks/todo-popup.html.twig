@@ -1,6 +1,6 @@
-<div class="todo-popup" id="todo-popup">
+<div class="todo-popup" id="todo-popup" data-todo-popup>
     <div class="content">
-        <a href="./todo/" class="button"></a>
+        <button class="button" data-button-close-add-todo-popup></button>
             {{ form_start(form, {'attr': {'novalidate':'novalidate', 'class':'add-todo'}}) }}
             <div>
                 <label for="title">Title: <sup>*</sup></label>
