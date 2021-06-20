@@ -90,12 +90,10 @@
                                 left: rem-calc(20);
                             }
                         }
-                    }
-                    .validation {
-                        display: none;
-                        color: #d60f0f;
-                        margin: {
-                            bottom: 0;
+                        .validation {
+                            padding: {
+                                left: 0;
+                            }
                         }
                     }
                 }

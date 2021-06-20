@@ -1,0 +1,17 @@
+.validation {
+    display: none;
+    color: #d60f0f;
+    margin: {
+        bottom: 0;
+    }
+}
+
+input {
+    &.is-invalid {
+        border: {
+            style: solid;
+            width: 2px;
+            color: $register-invalid-input-border-color;
+        }
+    }
+}

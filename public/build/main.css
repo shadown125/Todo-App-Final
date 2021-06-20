@@ -873,6 +873,18 @@ a:hover {
   transform: unset;
 }
 
+.validation {
+  display: none;
+  color: #d60f0f;
+  margin-bottom: 0;
+}
+
+input.is-invalid {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #d60f0f;
+}
+
 body {
   min-height: 100vh;
   background-image: linear-gradient(#667eea, #764ba2);
@@ -978,12 +990,10 @@ body.login .content-wrapper {
 .register .container .form .name-wrapper div:last-child {
     padding-left: 1.25rem;
   }
-}
-.login .container .form .name-wrapper div .validation,
+  .login .container .form .name-wrapper div .validation,
 .register .container .form .name-wrapper div .validation {
-  display: none;
-  color: #d60f0f;
-  margin-bottom: 0;
+    padding-left: 0;
+  }
 }
 .login .container .form div,
 .register .container .form div {

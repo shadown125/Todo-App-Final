@@ -1,12 +1,11 @@
 <div class="name-container" data-name-container>
     {{ include('todo/twigBlocks/profile-popup.html.twig') }}
-    {{ form_start(userNameForm, {'attr': {'novalidate':'novalidate', 'class':'form'}}) }}
+    {{ form_start(userNameForm, {'attr': {'novalidate':'novalidate', 'class':'form settings-name'}}) }}
         <div>
             <label for="new-name">New first name:</label>
                 {{ name|raw }}
-            <span>
+            <div class="validation"></div>
                 {{ form_errors(userNameForm.name) }}
-            </span>
         </div>
         <div>
             <label for="new-last-name">New last name:</label>
