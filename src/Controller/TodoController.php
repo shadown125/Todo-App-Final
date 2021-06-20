@@ -243,12 +243,13 @@ class TodoController extends AbstractController
         if($formImage->isSubmitted() && $formImage->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            $fileNumber = random_int(1, 100000);
-//            $fileName = $fileNumber . '.' . $request->request->get('todo_user_image')['profile_image'];
-//            dump($fileName);
-
-//            $user->setProfileImage($fileName);
-
+            $file = $formImage->get('profile_image')->getData();
+            $fileName = sha1(random_bytes(14)) . '.' . $file->guessExtension();
+            $file->move(
+                $this->getParameter('image_directory'),
+                $fileName
+            );
+            $user->setProfileImage($fileName);
             $em->persist($user);
             $em->flush();
 
