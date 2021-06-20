@@ -1,6 +1,6 @@
 <div class="image-container" data-image-container>
     {{ include('todo/twigBlocks/profile-popup.html.twig') }}
-    {{ form_start(userImage, {'attr': {'novalidate':'novalidate', 'class':'form settings-image'}}) }}
+    {{ form_start(userImage, {'attr': {'novalidate':'novalidate', 'class':'form settings-image', "enctype":"multipart/form-data"}}) }}
         <div>
             <label for="profile_image">Change profile image:</label>
             {{ form_widget(userImage.profile_image, { 'attr': {'class': 'input-option'} }) }}

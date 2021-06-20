@@ -244,16 +244,18 @@ class TodoController extends AbstractController
             $em = $this->getDoctrine()->getManager();
 
             $file = $formImage->get('profile_image')->getData();
-            $fileName = sha1(random_bytes(14)) . '.' . $file->guessExtension();
-            $file->move(
-                $this->getParameter('image_directory'),
-                $fileName
-            );
-            $user->setProfileImage($fileName);
-            $em->persist($user);
-            $em->flush();
+            if($file->guessExtension() === 'jpg' || $file->guessExtension() === 'jpeg' || $file->guessExtension() === 'png') {
+                $fileName = sha1(random_bytes(14)) . '.' . $file->guessExtension();
+                $file->move(
+                    $this->getParameter('image_directory'),
+                    $fileName
+                );
+                $user->setProfileImage($fileName);
+                $em->persist($user);
+                $em->flush();
 
-            return $this->redirectToRoute('todo');
+                return $this->redirectToRoute('todo');
+            }
         }
         return $this->redirectToRoute('todo');
     }

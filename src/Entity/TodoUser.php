@@ -80,7 +80,6 @@ class TodoUser implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\File(mimeTypes={"image/jpeg", "image/jpg", "image/png"})
      */
     private $profile_image;
 
