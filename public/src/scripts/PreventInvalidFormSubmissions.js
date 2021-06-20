@@ -186,7 +186,6 @@ export default class PreventInvalidFormSubmissions {
 
         this.settingsImageForm[0].forEach((element, index) => {
             if (element.name === "todo_user_image[profile_image]" && !element.value.includes('.jpeg') && !element.value.includes('.jpg') && !element.value.includes('.png')) {
-                console.log(element)
                 element.classList.add("is-invalid")
                 element.nextElementSibling.style.display = 'block';
                 element.nextElementSibling.innerHTML = "The File need to be jpeg or jpg or png format";
