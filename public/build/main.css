@@ -1655,7 +1655,6 @@ body.login .content-wrapper {
 }
 .todos .todos-header .button,
 .todos .todos-header .description {
-  cursor: pointer;
   position: relative;
 }
 .todos .todos-header .button::before,
@@ -1680,6 +1679,7 @@ body.login .content-wrapper {
 }
 .todos .todos-header .button {
   transition: transform 0.2s;
+  cursor: pointer;
   margin-right: 0.625rem;
   width: 1.625rem;
   height: 1.625rem;

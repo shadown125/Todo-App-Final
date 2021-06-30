@@ -20,7 +20,6 @@
         }
         .button,
         .description {
-            cursor: pointer;
             position: relative;
             &::before {
                 @include icon(null, true);
@@ -40,6 +39,7 @@
         }
         .button {
             @include custom-button($todos-header-after-background-color);
+            cursor: pointer;
             margin: {
                 right: rem-calc(10);
             }
